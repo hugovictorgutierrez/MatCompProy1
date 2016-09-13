@@ -35,7 +35,7 @@ public class StringMatching {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
                 values[valuesPos] = line;
                 valuesPos++;
             }
@@ -64,7 +64,6 @@ public class StringMatching {
         Scanner sc1 = new Scanner(System.in);//Utilizado para la seleccion en el "menu"
         Scanner sc2 = new Scanner(System.in);//Utilizado para el input de String(s)
         int UserSelect;//Seleccion del usuario
-            
         String filename;//Nombre del archivo externo
         //Menu
         System.out.print("\nMatematicas Computacionales\nProyecto #1: String Matching\n"
@@ -88,7 +87,7 @@ public class StringMatching {
                 Patron = sc2.nextLine();
                 PatronLength = Patron.length();
                 //////////////////////////////////////////////////////
-                System.out.print("\nEscriba String a analizar:");
+                System.out.print("Escriba String a analizar:");
                 InputString = sc2.nextLine();
                 ISLength = InputString.length();
                 Readingtest();//Prueba si los inputs del usuario son correctos
