@@ -61,31 +61,6 @@ public class StringMatching {
         //test
     }
     
-//    public static int Longitudabc(String s) {
-//	boolean[] registrobool = new boolean[256];
-//	char[] abcdario = s.toCharArray();
-//        int inicio = 0;
-// 
-//	for (int i = 0; i < abcdario.length; i++) {
-//		char posicion = abcdario[i];
-//		if (registrobool[posicion]) {
-//			Longitudabc = Math.max(Longitudabc, i - inicio);
-//			for (int k = inicio; k < i; k++) {
-//				if (abcdario[k] == posicion) {
-//					inicio = k + 1; 
-//					break;
-//				}
-//				registrobool[abcdario[k]] = false;
-//			}
-//		} else {
-//			registrobool[posicion] = true;
-//		}
-//	}
-//	return Longitudabc = Math.max(abcdario.length - inicio, Longitudabc);
-//	//System.out.println("Cantidad de chars en abc-dario:"+Longitudabc);
-//    }
-    
-    
     public static void ADFbuilder(String P, int Plength){//Constructor del ADF que recibe el Patron y el tamanio del patron
 //        Longitudabc(InputString);
         int abcnum=Longitudabc;
