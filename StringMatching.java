@@ -147,7 +147,8 @@ public class StringMatching {
 //        System.out.println("SIZES:::num.edos:"+ADF.length+"num.entradas:"+ADF[0].length+"");
     }
     public static void printAFD(int m, int s){
-        for(int i = 0; i < m; i++){
+        System.out.println("Tabla de transición:");
+        for(int i = 0; i <= m; i++){
             for(int j = 0; j < s; j++){
                 System.out.print(StringMatching.ADF[i][j] + " ");
                 
