@@ -30,7 +30,7 @@ public class StringMatching {
     
     static int EdoFinal;//Edo final del automata
     static int Ocurrencias=0;//Numero de ocurrencias del Patron en InputString 
-    static String[][] ADF;//Automata transition table
+    static int[][] ADF;//Automata transition table
     
     public static void LeerArchivo(String file){//Funcion de lectura del archivo
         String filename = file;
@@ -53,9 +53,11 @@ public class StringMatching {
             ISLength = InputString.length();// Longitud del string a probar
             
         }catch(FileNotFoundException ex) {
-            System.out.println("ERROR: El archivo '"+filename+"' no se encuentra en el folder.");                
+            System.out.println("ERROR: El archivo '"+filename+"' no se encuentra en el folder.");
+            System.exit(0);                
         }catch(IOException ex) {
             System.out.println("ERROR: Falla de lectura del archivo '"+filename+"'.");
+            System.exit(0);
         }
     }
     
@@ -101,8 +103,32 @@ public class StringMatching {
         }
 //        Longitudabc=numLetters;
     }
-    
-    public static void ADFbuilder(String P, int Plength){//Constructor del ADF que recibe el Patron y el tamanio del patron
+    public static boolean esSufijo(String a, char x, int k, int q){
+        String aqx = a + x;
+        q++;
+        for(int i = 0; i < k; i++){
+            if(aqx[q - i] != a[k-i])
+                return false;
+        }
+        return true;
+    }
+    public static void ADFbuilder(String a, ArrayList<Character> sigma, int m, int s){//Constructor del ADF que recibe el Patron y el tamanio del patron
+        StringMatching.ADF = new int[m][s];
+        int k;
+        for(int q = 0; q < m; q++){
+            for(int x = 0; x < s; x++){
+                if(m + 1 <= q + 2)
+                    k = m + 1;
+                else
+                    k = q + 2;
+                do{
+                    k--;
+                }while(!esSufijo) //esSufijo
+                ADF[q][x] = k;
+            }
+        }
+
+
 //        Longitudabc(InputString);
 //        boolean transTerm = false;
 //        createabcd(P);
@@ -116,11 +142,16 @@ public class StringMatching {
 //        
 //        }
 //        System.out.println("SIZES:::num.edos:"+ADF.length+"num.entradas:"+ADF[0].length+"");
-        
-        
-        
-        
     }
+    public static void printAFD(int m, int s){
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < s; j++){
+                System.out.print(StringMatching.ADF[i][j] + " ");
+                System.out.print("\n");
+            }
+        }
+    }
+    
     
     public static void ADFexecute(){//Ejecuta el ADF con el InputString y guarda los resultados en un archivo externo
 
@@ -172,7 +203,7 @@ public class StringMatching {
         UserSelect = sc1.nextInt();
         switch(UserSelect){
             case 1://En caso de que se elija leer desde un archivo externo
-                System.out.println("ADVERTENCIA: El archivo externo debe detener exclusivamente"
+                System.out.println("ADVERTENCIA: El archivo externo debe tener exclusivamente:"
                                + "\nEn la primera linea el Patron y en la segunda linea el"
                                + "\nString a analizar, y sin espacios o lineas vacias. De"
                                + "\nlo contrario, el programa no va a funcionar correctamente.");
