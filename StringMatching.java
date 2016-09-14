@@ -8,6 +8,8 @@ package stringmatching;
 
 import java.util.Scanner;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,11 +23,14 @@ public class StringMatching {
     
     static String Patron, InputString;//"Patron" es el patron para construir el ADF y "InputString" es el string a analizar
     static int PatronLength;//Longitud de Patron
-    static int Longitudabc=0;//Numero de letras en el abc-
     static int ISLength;//Longitud de InputString
+    
+    static List<Character> abcd = new ArrayList<Character>();
+    static int Longitudabc=0;//Numero de letras en el abc-
+    
     static int EdoFinal;//Edo final del automata
     static int Ocurrencias=0;//Numero de ocurrencias del Patron en InputString 
-    static char[][] ADF;//Automata
+    static String[][] ADF;//Automata transition table
     
     public static void LeerArchivo(String file){//Funcion de lectura del archivo
         String filename = file;
@@ -61,22 +66,68 @@ public class StringMatching {
         //test
     }
     
+    
+    
+    public static boolean isThere(char letter){// Verifica si la letra ya esta en el alfabeto
+        boolean isHere=false;
+        for(int i = 0; i<abcd.size(); i++){
+            if(abcd.contains(letter)){//verifica si la letra ya esta en el alfabeto
+                isHere=true;
+            }
+        }
+        System.out.println("an:"+isHere);
+        return isHere;
+    }
+    
+    public static void addLetters(String word){//Agrega letras al alfabeto y define el tamanio del alfabeto
+        for (int i = 0;i < word.length(); i++){
+            //System.out.println(word.charAt(i));
+            if(isThere(word.charAt(i))==false){//si la letra no esta en el alfabeto, se agrega al alfabeto
+                abcd.add(word.charAt(i));
+            }
+        }
+        Longitudabc=abcd.size();//Define el tamanio del alfabeto
+    }
+    
+    public static void createabcd(String word){//Crea el alfabeto
+        addLetters(word);
+        //printabcd();
+    }
+    
+    public static void printabcd(){//Imprime el contenido del alfabeto
+//        int numLetters=abcd.size();
+        for (int i=0; i<abcd.size(); i++){
+            System.out.print(abcd.get(i)+", ");
+        }
+//        Longitudabc=numLetters;
+    }
+    
     public static void ADFbuilder(String P, int Plength){//Constructor del ADF que recibe el Patron y el tamanio del patron
 //        Longitudabc(InputString);
+        boolean transTerm = false;
+        createabcd(P);
+        //printabcd();
         int abcnum=Longitudabc;
         EdoFinal=Plength;
-        ADF = new char[Plength+1][abcnum];
+        ADF = new String[Plength+1][abcnum];
+        
+        while(transTerm!=true){
+            
+        
+        }
+        //System.out.println("SIZES:::num.edos:"+ADF.length+"num.entradas:"+ADF[0].length+"");
         
         
         
         
     }
     
-    public static void ADFexecute(){
+    public static void ADFexecute(){//Ejecuta el ADF con el InputString y guarda los resultados en un archivo externo
 
         String fileResults = "output.txt";
         
         try {
+            ////////////////////////////////////////////////////////
             //Se crea archivo para guardar los resultados
             FileWriter fileWriter = new FileWriter(fileResults);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -128,11 +179,14 @@ public class StringMatching {
                 System.out.print("\nEscriba nombre del archivo:");
                 filename = sc2.nextLine();
                 LeerArchivo(filename);
-                Readingtest();//Prueba si los inputs del usuario son correctos
+                //Readingtest();//Prueba si los inputs del usuario son correctos
+                
+
                 //ADF
-                ////Longitudabc(InputString);
-                //ADFbuilder(Patron,PatronLength);
+                ADFbuilder(Patron,PatronLength);
                 //ADFexecute();
+                
+                
                 break;
                 
             case 2://En caso de que el usuario quiera introducir el Patron y el String
@@ -143,11 +197,14 @@ public class StringMatching {
                 System.out.print("Escriba String a analizar:");
                 InputString = sc2.nextLine();
                 ISLength = InputString.length();
-                Readingtest();//Prueba si los inputs del usuario son correctos
+                //Readingtest();//Prueba si los inputs del usuario son correctos
+                
+
                 //ADF
-                ////Longitudabc(InputString);
-                //ADFbuilder(Patron,PatronLength);
+                ADFbuilder(Patron,PatronLength);
                 //ADFexecute();
+                
+                
                 break;
                 
             default:
