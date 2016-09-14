@@ -114,10 +114,10 @@ public class StringMatching {
         }
         return true;
     }
-    public static void ADFbuilder(String a, ArrayList<Character> sigma, int m, int s){//Constructor del ADF que recibe el Patron y el tamanio del patron
-        StringMatching.ADF = new int[m][s];
+    public static void ADFbuilder(String a, ArrayList<Character> sigma, int m, int s){//Constructor de la tabla de transición
+        StringMatching.ADF = new int[m + 1][s];
         int k;
-        for(int q = 0; q < m; q++){
+        for(int q = 0; q <= m; q++){
             for(int x = 0; x < s; x++){
                 if(m + 1 <= q + 2)
                     k = m + 1;
@@ -157,7 +157,7 @@ public class StringMatching {
     }
     
     
-    public static void ADFexecute(){//Ejecuta el ADF con el InputString y guarda los resultados en un archivo externo
+    public static void ADFexecute(ArrayList<Character> sigma){//Ejecuta el ADF con el InputString y guarda los resultados en un archivo externo
 
         String fileResults = "output.txt";
         
@@ -174,8 +174,9 @@ public class StringMatching {
             char[] StringPrueba= InputString.toCharArray();
             System.out.println("String;"+InputString+", longitud:"+StringPrueba.length+"...");
             int q = 0;
+            int t = StringPrueba.length;
             for (int i=0; i<StringPrueba.length; i++){
-                
+                q = StringMatching.ADF[q][sigma.indexOf(StringPrueba[i])];
                 //q = funcion(q,StringPrueba[i]);//Recibe edo. presente y prueba el char recibido del InputString
                 
                 if(q==EdoFinal){//Si el edo presente es el edo. final
@@ -222,6 +223,7 @@ public class StringMatching {
                 EdoFinal = PatronLength;//numero del edo final
                 ADFbuilder(Patron, abcd, PatronLength, Longitudabc);
                 printAFD(PatronLength, Longitudabc);
+                ADFexecute(abcd);
                 
                 
                 break;
@@ -242,6 +244,9 @@ public class StringMatching {
                 EdoFinal = PatronLength;//numero del edo final
                 //ADFbuilder(Patron,PatronLength);
                 //ADFexecute();
+                ADFbuilder(Patron, abcd, PatronLength, Longitudabc);
+                printAFD(PatronLength, Longitudabc);
+                ADFexecute(abcd);
                 
                 
                 break;

@@ -1,0 +1,3 @@
+Con el patron ababcda
+Para el String aaaaababcdababcda
+Num. total de ocurrancias:2
