@@ -106,8 +106,10 @@ public class StringMatching {
     public static boolean esSufijo(String a, char x, int k, int q){
         String aqx = a + x;
         q++;
-        for(int i = 0; i < k; i++){
-            if(aqx.charAt(q - i) != a.charAt(k-i))
+        if(k > q)
+            return false;
+        for(int i = 1; i < k; i++){
+            if(aqx.charAt(q - i) != a.charAt(k - i))
                 return false;
         }
         return true;
@@ -123,7 +125,8 @@ public class StringMatching {
                     k = q + 2;
                 do{
                     k--;
-                }while(!esSufijo(a, sigma.get(x), k, q)); //esSufijo
+                //}while(!esSufijo(a, sigma.get(x), k, q)); //esSufijo
+                }while((a.substring(0,q) + x).endsWith(a.substring(0, k)));
                 ADF[q][x] = k;
             }
         }
