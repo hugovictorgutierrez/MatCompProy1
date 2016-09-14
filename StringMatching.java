@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package stringmatching;
+//package stringmatching;
 
 import java.util.Scanner;
 import java.io.*;
@@ -31,6 +30,7 @@ public class StringMatching {
     static int EdoFinal;//Edo final del automata
     static int Ocurrencias=0;//Numero de ocurrencias del Patron en InputString 
     static int[][] ADF;//Automata transition table
+    static int contador = 0;
     
     public static void LeerArchivo(String file){//Funcion de lectura del archivo
         String filename = file;
@@ -126,8 +126,8 @@ public class StringMatching {
                 do{
                     k--;
                 //}while(!esSufijo(a, sigma.get(x), k, q)); //esSufijo
-                }while((a.substring(0,q) + x).endsWith(a.substring(0, k)));
-                ADF[q][x] = k;
+                }while(!(a.substring(0,q) + sigma.get(x)).endsWith(a.substring(0, k)));
+                StringMatching.ADF[q][x] = k;
             }
         }
 
@@ -150,8 +150,9 @@ public class StringMatching {
         for(int i = 0; i < m; i++){
             for(int j = 0; j < s; j++){
                 System.out.print(StringMatching.ADF[i][j] + " ");
-                System.out.print("\n");
+                
             }
+            System.out.print("\n");
         }
     }
     
