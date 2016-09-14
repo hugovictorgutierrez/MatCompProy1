@@ -25,7 +25,7 @@ public class StringMatching {
     static int PatronLength;//Longitud de Patron
     static int ISLength;//Longitud de InputString
     
-    static List<Character> abcd = new ArrayList<Character>();
+    static ArrayList<Character> abcd = new ArrayList<Character>();
     static int Longitudabc=0;//Numero de letras en el abc-
     
     static int EdoFinal;//Edo final del automata
@@ -104,18 +104,18 @@ public class StringMatching {
     
     public static void ADFbuilder(String P, int Plength){//Constructor del ADF que recibe el Patron y el tamanio del patron
 //        Longitudabc(InputString);
-        boolean transTerm = false;
-        createabcd(P);
-        //printabcd();
-        int abcnum=Longitudabc;
-        EdoFinal=Plength;
-        ADF = new String[Plength+1][abcnum];
+//        boolean transTerm = false;
+//        createabcd(P);
+//        //printabcd();
+//        int abcnum=Longitudabc;
+//        EdoFinal=Plength;
+//        ADF = new String[Plength+1][abcnum];
         
-        while(transTerm!=true){
-            
-        
-        }
-        //System.out.println("SIZES:::num.edos:"+ADF.length+"num.entradas:"+ADF[0].length+"");
+//        while(transTerm!=true){
+//            
+//        
+//        }
+//        System.out.println("SIZES:::num.edos:"+ADF.length+"num.entradas:"+ADF[0].length+"");
         
         
         
@@ -179,11 +179,13 @@ public class StringMatching {
                 System.out.print("\nEscriba nombre del archivo:");
                 filename = sc2.nextLine();
                 LeerArchivo(filename);
-                //Readingtest();//Prueba si los inputs del usuario son correctos
+                Readingtest();//Prueba si los inputs del usuario son correctos
                 
 
                 //ADF
-                ADFbuilder(Patron,PatronLength);
+                createabcd(Patron);//crea el alfabeto
+                EdoFinal = PatronLength;//numero del edo final
+                //ADFbuilder(Patron,PatronLength);
                 //ADFexecute();
                 
                 
@@ -197,11 +199,13 @@ public class StringMatching {
                 System.out.print("Escriba String a analizar:");
                 InputString = sc2.nextLine();
                 ISLength = InputString.length();
-                //Readingtest();//Prueba si los inputs del usuario son correctos
+                Readingtest();//Prueba si los inputs del usuario son correctos
                 
 
                 //ADF
-                ADFbuilder(Patron,PatronLength);
+                createabcd(Patron);//crea el alfabeto
+                EdoFinal = PatronLength;//numero del edo final
+                //ADFbuilder(Patron,PatronLength);
                 //ADFexecute();
                 
                 
