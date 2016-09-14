@@ -107,7 +107,7 @@ public class StringMatching {
         String aqx = a + x;
         q++;
         for(int i = 0; i < k; i++){
-            if(aqx[q - i] != a[k-i])
+            if(aqx.charAt(q - i) != a.charAt(k-i))
                 return false;
         }
         return true;
@@ -123,7 +123,7 @@ public class StringMatching {
                     k = q + 2;
                 do{
                     k--;
-                }while(!esSufijo) //esSufijo
+                }while(!esSufijo(a, sigma.get(x), k, q)); //esSufijo
                 ADF[q][x] = k;
             }
         }
@@ -216,8 +216,8 @@ public class StringMatching {
                 //ADF
                 createabcd(Patron);//crea el alfabeto
                 EdoFinal = PatronLength;//numero del edo final
-                //ADFbuilder(Patron,PatronLength);
-                //ADFexecute();
+                ADFbuilder(Patron, abcd, PatronLength, Longitudabc);
+                printAFD(PatronLength, Longitudabc);
                 
                 
                 break;
