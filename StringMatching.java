@@ -49,8 +49,8 @@ public class StringMatching {
             bufferedReader.close();
             Patron = values[0];
             PatronLength = Patron.length();
-            InputString = values[1];
-            ISLength = InputString.length();
+            InputString = values[1];//String a probar
+            ISLength = InputString.length();// Longitud del string a probar
             
         }catch(FileNotFoundException ex) {
             System.out.println("ERROR: El archivo '"+filename+"' no se encuentra en el folder.");                
